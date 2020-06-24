@@ -8,11 +8,11 @@
     <ul class="navbar-nav mr-auto">
       <!-- Add to menu -->
     </ul>
-    <div class="dropdown" *ngIf="LoggedIn()" >
-      <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Welcome User
+    <div class="dropdown" *ngIf="LoggedIn()" dropdown>
+      <button class="btn dropdown-toggle" dropdownToggle>
+        Welcome {{authService.decodedToken?.unique_name | titlecase}}
       </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" *dropdownMenu>
         <a class="dropdown-item" href="#">Edit profile</a>
         <a class="dropdown-item" href="#"></a>
         <a class="dropdown-item" (click)="LoggedOut()" >Logout</a>
@@ -22,7 +22,7 @@
       <input class="form-control mr-sm-2" name="username" placeholder="Username"
         aria-label="Username" required [(ngModel)]="model.username">
 
-      <input class="form-control mr-sm-2" name="password" placeholder="Password"
+      <input class="form-control mr-sm-2" type="password" name="password" placeholder="Password"
         aria-label="Password" required [(ngModel)]="model.password">
 
       <button class="btn btn-success my-2 my-sm-0" [disabled]="LoginForm.invalid" type="submit">Login</button>
